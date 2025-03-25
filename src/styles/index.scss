@@ -1,0 +1,33 @@
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat';
+
+  div#root {
+    margin-top: 50px;
+    height: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    header {
+      max-width: 1240px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    main {
+      max-width: 1240px;
+      min-height: 100vh;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}
