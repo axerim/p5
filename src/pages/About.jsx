@@ -4,10 +4,14 @@ import image from "../assets/banner-about.jpg";
 import "../styles/About.scss";
 
 const About = () => {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [activeIndices, setActiveIndices] = useState([]);
 
   const toggleAccordion = (index) => {
-    setActiveIndex(activeIndex === index ? null : index);
+    setActiveIndices(prevIndices =>
+      prevIndices.includes(index)
+        ? prevIndices.filter(i => i !== index) // Ferme l'élément s'il est déjà ouvert
+        : [...prevIndices, index] // Ouvre l'élément en plus des autres
+    );
   };
 
   const accordionData = [
@@ -44,11 +48,11 @@ const About = () => {
               style={{ backgroundColor: '#FF6060' }}
             >
               <h2>{item.title}</h2>
-              <button className={`accordion-button ${activeIndex === index ? 'active' : ''}`}>
+              <button className={`accordion-button ${activeIndices.includes(index) ? 'active' : ''}`}>
                 <span className="arrow"></span>
               </button>
             </div>
-            <div className={`accordion-content ${activeIndex === index ? 'open' : ''}`}>
+            <div className={`accordion-content ${activeIndices.includes(index) ? 'open' : ''}`}>
               <p>{item.content}</p>
             </div>
           </div>
