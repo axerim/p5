@@ -1,18 +1,9 @@
-import { useState } from "react";
 import Banner from "./Banner";
 import image from "../assets/banner-about.jpg";
 import "../styles/About.scss";
+import Collapse from "../components/Collapse";
 
 const About = () => {
-  const [activeIndices, setActiveIndices] = useState([]);
-
-  const toggleAccordion = (index) => {
-    setActiveIndices(prevIndices =>
-      prevIndices.includes(index)
-        ? prevIndices.filter(i => i !== index) // Ferme l'élément s'il est déjà ouvert
-        : [...prevIndices, index] // Ouvre l'élément en plus des autres
-    );
-  };
 
   const accordionData = [
     {
@@ -34,31 +25,17 @@ const About = () => {
   ];
 
   return (
-    <main className="about-page">
+    <div className="about-page">
       {/* Bannière en haut de page */}
-      <Banner image={image} title="paysage" />
-      
+      <Banner img={image} />
+
       {/* Section Accordéon */}
-      <div className="accordion-container">
+      <section className="accordion-container">
         {accordionData.map((item, index) => (
-          <div key={index} className="accordion-item">
-            <div 
-              className="accordion-header" 
-              onClick={() => toggleAccordion(index)}
-              style={{ backgroundColor: '#FF6060' }}
-            >
-              <h2>{item.title}</h2>
-              <button className={`accordion-button ${activeIndices.includes(index) ? 'active' : ''}`}>
-                <span className="arrow"></span>
-              </button>
-            </div>
-            <div className={`accordion-content ${activeIndices.includes(index) ? 'open' : ''}`}>
-              <p>{item.content}</p>
-            </div>
-          </div>
+          <Collapse item={item} index={index} />
         ))}
-      </div>
-    </main>
+      </section>
+    </div>
   );
 };
 
